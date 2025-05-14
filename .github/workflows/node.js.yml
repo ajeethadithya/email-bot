@@ -1,0 +1,31 @@
+name: To-Do List Bot
+
+on:
+  schedule:
+  - cron: "0 07 * * *"
+  workflow_dispatch:
+
+env:
+  MAIL_USER_EMAIL: ${{ secrets.MAIL_USER_EMAIL }}
+  MAIL_USER_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+  MAIL_FROM: ${{ secrets.MAIL_FROM }}
+  MAIL_TO: ${{ secrets.MAIL_TO }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: node src/main.js
