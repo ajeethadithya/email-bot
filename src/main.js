@@ -7,8 +7,8 @@ async function getProjects() {
         try {
                 const projects = await api.getProjects();
                 return projects;
-        } catch(error) {
-                console.error('error', error);
+        } catch(err) {
+                console.error('error', err);
         }
 }
 
@@ -17,8 +17,8 @@ async function getTasks(project_id) {
 	try {
 		const tasks = await api.getTasks({project_id});
 		return tasks
-	} catch {
-		console.error('error', error);
+	} catch(err) {
+		console.error('error', err);
 	}
 }
 
@@ -46,7 +46,6 @@ async function getTasks(project_id) {
 		htmlBody += `</ul>`;
 	}
 
-
 	/* Send the email */
 	const transporter = nodemailer.createTransport({
   		host: "smtp.gmail.com",
@@ -65,5 +64,4 @@ async function getTasks(project_id) {
 		text: 'See the HTML version of this email for your task report.',
 		html: htmlBody,
 	});
-
 })();
