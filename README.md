@@ -23,27 +23,36 @@ This is automated using a cron job configured through **GitHub Actions**.
 
 ---
 
-## Local Setup
+## Automation
 
-- Clone the repository
-- Install the dependencies by running the command `npm install`
-- At the root of the repository create a `.env` file
-
-## Automate Through Github Actions
-
-- Fork the repository
-- Go to repository Settings -> `Secrets and variables -> Actions`
-- Add the following secrets:
-  ```
-  MAIL_USER_EMAIL
-  MAIL_USER_PASSWORD
-  MAIL_FROM
-  MAIL_TO
-  TODOIST_API_KEY
-  ```
+The email script is run daily using **GitHub Actions** with a scheduled cron job at 14:00 AM UTC
 
 ---
 
-## Automation
+## Setup
+### Local Machine (Not Automated)
 
-The email script is run daily using **GitHub Actions** with a scheduled cron job at 14:00 AM UTC.
+- Clone the repository
+- Install the dependencies by running the command `npm install`
+- At the root of the repository create a `.env` file:
+```
+ MAIL_USER_EMAIL      # This is the email address from which mails will be sent
+ MAIL_USER_PASSWORD   # For gmail create an from https://myaccount.google.com/apppasswords
+ MAIL_FROM            # The email address of the sender (same as MAIL_USER_EMAIL)
+ MAIL_TO              # The email address of the receiver
+ TODOIST_API_KEY      # Get the todoist API key from Settings -> Integrations -> Developer
+```
+---
+
+### Automate Through Github Actions
+
+- Fork the repository
+- Update the cron to your preferred time under `.github/workflows/node.js.yml` (currently set to run at 14:00 AM UTC)
+- In your repository, go to `Settings -> Secrets and variables -> Actions` and add the following secrets:
+```
+ MAIL_USER_EMAIL      # This is the email address from which mails will be sent
+ MAIL_USER_PASSWORD   # For gmail create an from https://myaccount.google.com/apppasswords
+ MAIL_FROM            # The email address of the sender (same as MAIL_USER_EMAIL)
+ MAIL_TO              # The email address of the receiver
+ TODOIST_API_KEY      # Get the todoist API key from Settings -> Integrations -> Developer
+```
