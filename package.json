@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@doist/todoist-api-typescript": "^4.0.4",
     "dotenv": "^16.5.0",
     "nodemailer": "^7.0.3"
   }
