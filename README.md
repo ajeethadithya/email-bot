@@ -34,13 +34,13 @@ The email script is run daily using **GitHub Actions** with a scheduled cron job
 
 - Clone the repository
 - Install the dependencies by running the command `npm install`
-- At the root of the repository create a `.env` file:
+- Create a `.env` file at the root of the repository and add the following secrets:
 ```
- MAIL_USER_EMAIL      # This is the email address from which mails will be sent
- MAIL_USER_PASSWORD   # For gmail create an from https://myaccount.google.com/apppasswords
- MAIL_FROM            # The email address of the sender (same as MAIL_USER_EMAIL)
- MAIL_TO              # The email address of the receiver
- TODOIST_API_KEY      # Get the todoist API key from Settings -> Integrations -> Developer
+ MAIL_USER_EMAIL="<email_address>"     # This is the email address from which mails will be sent
+ MAIL_USER_PASSWORD="<api_key>"        # For gmail create an from https://myaccount.google.com/apppasswords
+ MAIL_FROM="<email_adress>"            # The email address of the sender (same as MAIL_USER_EMAIL)
+ MAIL_TO="<email_adress>"              # The email address of the receiver
+ TODOIST_API_KEY="<api_key>"           # Get the todoist API key from Settings -> Integrations -> Developer
 ```
 ---
 
