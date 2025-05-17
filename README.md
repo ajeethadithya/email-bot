@@ -47,7 +47,6 @@ The email script is run daily using **GitHub Actions** with a scheduled cron job
 ### Automate Through Github Actions
 
 - Fork the repository
-- Update the cron to your preferred time under `.github/workflows/node.js.yml` (currently set to run at 14:00 AM UTC)
 - In your repository, go to `Settings -> Secrets and variables -> Actions` and add the following secrets:
 ```
  MAIL_USER_EMAIL      # This is the email address from which mails will be sent
@@ -56,3 +55,5 @@ The email script is run daily using **GitHub Actions** with a scheduled cron job
  MAIL_TO              # The email address of the receiver
  TODOIST_API_KEY      # Get the todoist API key from Settings -> Integrations -> Developer
 ```
+- Update the cron to your preferred time under `.github/workflows/node.js.yml` (currently set to run at 14:00 AM UTC)
+- In your repository, go to the `Actions -> To-Do List Bot -> Run workflow`
