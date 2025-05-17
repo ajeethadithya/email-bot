@@ -2,7 +2,7 @@ name: To-Do List Bot
 
 on:
   schedule:
-  - cron: "0 7 * * *"
+  - cron: "0 14 * * *"
   workflow_dispatch:
 
 env:
