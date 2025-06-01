@@ -22,6 +22,16 @@ async function getTasks(project_id) {
 	}
 }
 
+async function markTaskAsCompleted(task_id) {
+
+	try {
+		const taskCompleted = await api.closeTask(task_id);
+		return taskCompleted;
+	} catch(err) {
+		console.error('error', err);
+	}
+}
+
 (async function run() {
 
 	console.log('Running my daily report..\n')	
@@ -33,19 +43,19 @@ async function getTasks(project_id) {
 
 	for (let i = 1; i < projects.results.length; i++) {
 		
-		console.log(projects.results[i].name);
+		console.log(`${projects.results[i].name} (id: ${projects.results[i].id})`);
 		htmlBody += `<h2>${projects.results[i].name}</h2>`;
 		
 		const tasks = await getTasks(projects.results[i].id);
 		
 		htmlBody += `<ul>`;
 		for(let j = 0; j < tasks.results.length; j++) {
-			console.log("\t", tasks.results[j].content);
-			htmlBody += `<li>${tasks.results[j].content}</li>`;
+			console.log(`\t ${tasks.results[j].content} (id: ${tasks.results[j].id})`);
+			htmlBody += `<li><a href="${tasks.results[j].url}">${tasks.results[j].content}</a></li>`;
 		}
 		htmlBody += `</ul>`;
 	}
-
+		
 	/* Send the email */
 	const transporter = nodemailer.createTransport({
   		host: "smtp.gmail.com",
@@ -65,3 +75,4 @@ async function getTasks(project_id) {
 		html: htmlBody,
 	});
 })();
+
